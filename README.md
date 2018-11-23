@@ -1,10 +1,5 @@
 
-# Self-Driving Car Engineer Nanodegree
-
-## Deep Learning
-
-## Project: Build a Traffic Sign Recognition Classifier
-
+## Project: Building a Traffic Sign Recognition Classifier
 
 
 [//]: # (Image References)
@@ -14,14 +9,14 @@
 [image3]: ./writeup_images/internet.png "internet"
 
 ---
-## Step 0: Load The Data
+## Step 0: Loading The Data
 
 ---
 
 ## Step 1: Dataset Summary & Exploration
 
 
-### Provide a Basic Summary of the Data Set Using Python, Numpy and/or Pandas
+### Basic Summary of the Data Set Using Python, Numpy and/or Pandas
 
 - Number of training examples = 34799
 - Number of testing examples = 12630
@@ -30,22 +25,22 @@
 
 ![alt text][image1]
 
-### Include an exploratory visualization of the dataset
+### Exploratory visualization of the dataset
 
 ![alt text][image2]
 
 ----
 
-## Step 2: Design and Test a Model Architecture
+## Step 2: Designing and Testing a Model Architecture
 
 
-### Pre-process the Data Set (normalization, grayscale, etc.)
+### Pre-processing the Data Set (normalization, grayscale, etc.)
 
 #### The image data is converted into grayscale to help minimize training time.
 
-#### Then the data is shuffled to randomize order of samples
+#### Then the data is shuffled to randomize order of samples.
 
-#### Then the image data is normalized so that the data has mean zero and equal variance.
+#### Then the image data is normalized so that the data has  a mean of zero and equal variance.
 
 ### Model Architecture
 
@@ -66,12 +61,12 @@
 #### - ReLU Activation
 #### - Fully connected Layer (Input = 1024, Output = 43)
 
-### Train, Validate and Test the Model
+### Training, Validating and Testing the Model
 
 A validation set can be used to assess how well the model is performing. A low accuracy on the training and validation
 sets imply underfitting. A high accuracy on the training set but low accuracy on the validation set implies overfitting.
 
-### For training, Adam optimizer was used.
+### For training, the Adam optimizer was used.
 
 ### Hyperparametrs:
 #### -batch size: 64
@@ -88,26 +83,22 @@ My approach was mostly trial and error. However, I had worked on a similar proje
 
 ---
 
-## Step 3: Test a Model on New Images
-
-To give yourself more insight into how your model is working, download at least five pictures of German traffic signs from the web and use your model to predict the traffic sign type.
-
-You may find `signnames.csv` useful as it contains mappings from the class id (integer) to the actual sign name.
+## Step 3: Testing the Model on New Images
 
 I have download 6 random german traffic signs from the internet and labelled them
 
-### Load and Output the Images
+### Loading the Images
 
 ![alt text][image3]
 
-### Predict the Sign Type for Each Image
+### Predicting the Sign Type for Each Image
 
 - Actual Label:
 [17, 4, 36, 25, 29, 38]
 - Output:
 [17  4 36 25 10 38]
 
-### Analyze Performance
+### Analyzing Performance
 
 ### Accuracy: 83.3 %
 
