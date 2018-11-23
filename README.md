@@ -1,58 +1,162 @@
-## Project: Build a Traffic Sign Recognition Program
-[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-Overview
+# Self-Driving Car Engineer Nanodegree
+
+## Deep Learning
+
+## Project: Build a Traffic Sign Recognition Classifier
+
+
+
+[//]: # (Image References)
+
+[image1]: ./writeup_images/random.png "random"
+[image2]: ./writeup_images/hist.png "hist"
+[image3]: ./writeup_images/internet.png "internet"
+
 ---
-In this project, you will use what you've learned about deep neural networks and convolutional neural networks to classify traffic signs. You will train and validate a model so it can classify traffic sign images using the [German Traffic Sign Dataset](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset). After the model is trained, you will then try out your model on images of German traffic signs that you find on the web.
+## Step 0: Load The Data
 
-We have included an Ipython notebook that contains further instructions 
-and starter code. Be sure to download the [Ipython notebook](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb). 
-
-We also want you to create a detailed writeup of the project. Check out the [writeup template](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup. The writeup can be either a markdown file or a pdf document.
-
-To meet specifications, the project will require submitting three files: 
-* the Ipython notebook with the code
-* the code exported as an html file
-* a writeup report either as a markdown or pdf file 
-
-Creating a Great Writeup
 ---
-A great writeup should include the [rubric points](https://review.udacity.com/#!/rubrics/481/view) as well as your description of how you addressed each point.  You should include a detailed description of the code used in each step (with line-number references and code snippets where necessary), and links to other supporting documents or external references.  You should include images in your writeup to demonstrate how your code works with examples.  
 
-All that said, please be concise!  We're not looking for you to write a book here, just a brief description of how you passed each rubric point, and references to the relevant code :). 
+## Step 1: Dataset Summary & Exploration
 
-You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup.
 
-The Project
+### Provide a Basic Summary of the Data Set Using Python, Numpy and/or Pandas
+
+- Number of training examples = 34799
+- Number of testing examples = 12630
+- Image data shape = (34799, 32, 32, 3)
+- Number of classes = 43
+
+![alt text][image1]
+
+### Include an exploratory visualization of the dataset
+
+![alt text][image2]
+
+----
+
+## Step 2: Design and Test a Model Architecture
+
+
+### Pre-process the Data Set (normalization, grayscale, etc.)
+
+#### The image data is converted into grayscale to help minimize training time.
+
+#### Then the data is shuffled to randomize order of samples
+
+#### Then the image data is normalized so that the data has mean zero and equal variance.
+
+### Model Architecture
+
+### This the LeNet Architecture, with the following layers:
+
+#### - 5x5 Convolution Layer (Input = 32x32x1, Output = 28x28x6)
+#### - ReLU Activation
+#### - 2x2 Max Pool (Input = 28x28x6, Output = 14x14x6)
+#### - 5x5 Convolution (Input = 14x14x6, Output = 10x10x16)
+#### - ReLU Activation
+#### - 2x2 Max Pool (Input = 10x10x16, Output = 5x5x16)
+#### - Flatten Layer (Input = 5x5x16, Output = 400)
+#### - Fully connected Layer (Input = 400, Output = 1024)
+#### - Dropout Layer
+#### - ReLU Activation
+#### - Fully connected Layer (Input = 1024, Output = 1024)
+#### - Dropout Layer
+#### - ReLU Activation
+#### - Fully connected Layer (Input = 1024, Output = 43)
+
+### Train, Validate and Test the Model
+
+A validation set can be used to assess how well the model is performing. A low accuracy on the training and validation
+sets imply underfitting. A high accuracy on the training set but low accuracy on the validation set implies overfitting.
+
+### For training, Adam optimizer was used.
+
+### Hyperparametrs:
+#### -batch size: 64
+#### -epochs: 38
+#### -learning rate: 0.0008
+#### -mu: 0
+#### -sigma: 0.1
+
+# Validation set accuracy: 94.3%
+
+# Test set accuracy: 93%
+
+My approach was mostly trial and error. However, I had worked on a similar project using LeNet before prior to the ND, so I started from the parameters that I used then, However I was using 50 epochs initially, then I noticed that the accuracy doesn't get any better after the 38th epoch, so I stopped at that.
+
 ---
-The goals / steps of this project are the following:
-* Load the data set
-* Explore, summarize and visualize the data set
-* Design, train and test a model architecture
-* Use the model to make predictions on new images
-* Analyze the softmax probabilities of the new images
-* Summarize the results with a written report
 
-### Dependencies
-This lab requires:
+## Step 3: Test a Model on New Images
 
-* [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit)
+To give yourself more insight into how your model is working, download at least five pictures of German traffic signs from the web and use your model to predict the traffic sign type.
 
-The lab environment can be created with CarND Term1 Starter Kit. Click [here](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) for the details.
+You may find `signnames.csv` useful as it contains mappings from the class id (integer) to the actual sign name.
 
-### Dataset and Repository
+I have download 6 random german traffic signs from the internet and labelled them
 
-1. Download the data set. The classroom has a link to the data set in the "Project Instructions" content. This is a pickled dataset in which we've already resized the images to 32x32. It contains a training, validation and test set.
-2. Clone the project, which contains the Ipython notebook and the writeup template.
-```sh
-git clone https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project
-cd CarND-Traffic-Sign-Classifier-Project
-jupyter notebook Traffic_Sign_Classifier.ipynb
-```
+### Load and Output the Images
 
-### Requirements for Submission
-Follow the instructions in the `Traffic_Sign_Classifier.ipynb` notebook and write the project report using the writeup template as a guide, `writeup_template.md`. Submit the project code and writeup document.
+![alt text][image3]
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+### Predict the Sign Type for Each Image
 
+- Actual Label:
+[17, 4, 36, 25, 29, 38]
+- Output:
+[17  4 36 25 10 38]
+
+### Analyze Performance
+
+### Accuracy: 83.3 %
+
+The model succeeded at predicting 5 out of the 6 images, the only one that failed was the bicycle one, which I find a bit odd since it's taken at a pretty straight angle and doesn't have a lot of noise, but I suppose maybe there's a chance this is not the standard sign for the german signs which the model has been trained on. The accuracy here does seem to be lower than the accuracy with the test data, but then again this is a very small sample (6 images) so it's expected to get an unreliable accuracy estimation for the model's performance.
+
+### Output Top 5 Softmax Probabilities For Each Image Found on the Web
+
+Top softmax probabilities:
+
+Prediction: 17
+1. Label: 17 - Probability: 100.0%
+2. Label: 40 - Probability: 0.0%
+3. Label: 33 - Probability: 0.0%
+4. Label: 0 - Probability: 0.0%
+5. Label: 1 - Probability: 0.0%
+
+Prediction: 4
+1. Label: 4 - Probability: 100.0%
+2. Label: 0 - Probability: 0.0%
+3. Label: 1 - Probability: 0.0%
+4. Label: 6 - Probability: 0.0%
+5. Label: 18 - Probability: 0.0%
+
+Prediction: 36
+1. Label: 36 - Probability: 100.0%
+2. Label: 35 - Probability: 0.0%
+3. Label: 13 - Probability: 0.0%
+4. Label: 34 - Probability: 0.0%
+5. Label: 12 - Probability: 0.0%
+
+Prediction: 25
+1. Label: 25 - Probability: 100.0%
+2. Label: 30 - Probability: 0.0%
+3. Label: 21 - Probability: 0.0%
+4. Label: 24 - Probability: 0.0%
+5. Label: 11 - Probability: 0.0%
+
+Prediction: 29
+1. Label: 10 - Probability: 99.4%
+2. Label: 35 - Probability: 0.6%
+3. Label: 9 - Probability: 0.0%
+4. Label: 42 - Probability: 0.0%
+5. Label: 23 - Probability: 0.0%
+
+Prediction: 38
+1. Label: 38 - Probability: 100.0%
+2. Label: 0 - Probability: 0.0%
+3. Label: 1 - Probability: 0.0%
+4. Label: 2 - Probability: 0.0%
+5. Label: 3 - Probability: 0.0%
+
+The model seems to be pretty confident about most of the predictions, except for the one that failed, the bicycles one, where it didn't come near the correct guess at all, which bewilders me.

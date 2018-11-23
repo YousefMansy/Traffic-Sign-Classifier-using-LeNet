@@ -7,6 +7,12 @@
 
 
 
+[//]: # (Image References)
+
+[image1]: ./writeup_images/random.png "random"
+[image2]: ./writeup_images/hist.png "hist"
+[image3]: ./writeup_images/internet.png "internet"
+
 ---
 ## Step 0: Load The Data
 
@@ -22,11 +28,11 @@
 - Image data shape = (34799, 32, 32, 3)
 - Number of classes = 43
 
-<img src="writeup_images/random.png">
+![alt text][image1]
 
 ### Include an exploratory visualization of the dataset
 
-<img src="writeup_images/hist.png">
+![alt text][image2]
 
 ----
 
@@ -92,7 +98,7 @@ I have download 6 random german traffic signs from the internet and labelled the
 
 ### Load and Output the Images
 
-<img src="writeup_images/internet.png">
+![alt text][image3]
 
 ### Predict the Sign Type for Each Image
 
